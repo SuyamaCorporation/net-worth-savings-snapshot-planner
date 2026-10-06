@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Net Worth &amp; Savings Rate Snapshot Planner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-emerald-50 min-h-screen text-gray-800">
+  <div class="max-w-3xl mx-auto px-4 py-8">
+    <header class="mb-8 text-center">
+      <h1 class="text-3xl font-bold text-emerald-700">💰 Net Worth Planner</h1>
+      <p class="text-emerald-600 mt-1">Track assets, liabilities, savings rate &amp; FIRE number</p>
+    </header>
+
+    <!-- Snapshot Date -->
+    <div class="bg-white rounded-xl shadow p-5 mb-5">
+      <div class="flex items-center gap-4">
+        <div>
+          <label for="snapshotDate" class="block text-sm font-medium text-gray-600 mb-1">Snapshot Date</label>
+          <input type="date" id="snapshotDate" class="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400" aria-label="Snapshot date" />
+        </div>
+        <div>
+          <label for="snapshotLabel" class="block text-sm font-medium text-gray-600 mb-1">Label (optional)</label>
+          <input type="text" id="snapshotLabel" maxlength="40" placeholder="End of Q3 2026" class="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400" aria-label="Snapshot label" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Assets + Liabilities -->
+    <div class="grid grid-cols-2 gap-4 mb-5">
+      <!-- Assets -->
+      <div class="bg-white rounded-xl shadow p-5">
+        <h2 class="text-sm font-semibold text-emerald-700 mb-3">Assets</h2>
+        <div class="space-y-2">
+          <div class="flex items-center gap-2">
+            <label for="assetBank" class="text-xs text-gray-500 w-28 shrink-0">Bank / Cash</label>
+            <input type="number" id="assetBank" min="0" placeholder="0" class="flex-1 border border-gray-200 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-emerald-300" aria-label="Bank and cash assets" />
+          </div>
+          <div class="flex items-center gap-2">
+            <label for="assetInvest" class="text-xs text-gray-500 w-28 shrink-0">Investments</label>
+            <input type="number" id="assetInvest" min="0" placeholder="0" class="flex-1 border border-gray-200 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-emerald-300" aria-label="Investment assets" />
+          </div>
+          <div class="flex items-center gap-2">
+            <label for="assetProperty" class="text-xs text-gray-500 w-28 shrink-0">Property</label>
+            <input type="number" id="assetProperty" min="0" placeholder="0" class="flex-1 border border-gray-200 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-emerald-300" aria-label="Property assets" />
+          </div>
+          <div class="flex items-center gap-2">
+            <label for="assetRetire" class="text-xs text-gray-500 w-28 shrink-0">Retirement</label>
+            <input type="number" id="assetRetire" min="0" placeholder="0" class="flex-1 border border-gray-200 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-emerald-300" aria-label="Retirement assets" />
+          </div>
+          <div class="flex items-center gap-2">
+            <label for="assetOther" class="text-xs text-gray-500 w-28 shrink-0">Other</label>
+            <input type="number" id="assetOther" min="0" placeholder="0" class="flex-1 border border-gray-200 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-emerald-300" aria-label="Other assets" />
+          </div>
+          <div class="pt-1 border-t border-gray-100 flex justify-between text-sm font-semibold text-emerald-700">
+            <span>Total Assets</span>
+            <span id="totalAssetsDisplay">$0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Liabilities -->
+      <div class="bg-white rounded-xl shadow p-5">
+        <h2 class="text-sm font-semibold text-red-600 mb-3">Liabilities</h2>
+        <div class="space-y-2">
+          <div class="flex items-center gap-2">
+            <label for="liabMortgage" class="text-xs text-gray-500 w-28 shrink-0">Mortgage</label>
+            <input type="number" id="liabMortgage" min="0" placeholder="0" class="flex-1 border border-gray-200 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-red-200" aria-label="Mortgage liability" />
+          </div>
+          <div class="flex items-center gap-2">
+            <label for="liabLoans" class="text-xs text-gray-500 w-28 shrink-0">Loans</label>
+            <input type="number" id="liabLoans" min="0" placeholder="0" class="flex-1 border border-gray-200 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-red-200" aria-label="Loan liabilities" />
+          </div>
+          <div class="flex items-center gap-2">
+            <label for="liabCredit" class="text-xs text-gray-500 w-28 shrink-0">Credit Cards</label>
+            <input type="number" id="liabCredit" min="0" placeholder="0" class="flex-1 border border-gray-200 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-red-200" aria-label="Credit card liability" />
+          </div>
+          <div class="flex items-center gap-2">
+            <label for="liabOther" class="text-xs text-gray-500 w-28 shrink-0">Other</label>
+            <input type="number" id="liabOther" min="0" placeholder="0" class="flex-1 border border-gray-200 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-red-200" aria-label="Other liabilities" />
+          </div>
+          <div class="pt-1 border-t border-gray-100 flex justify-between text-sm font-semibold text-red-600">
+            <span>Total Liabilities</span>
+            <span id="totalLiabDisplay">$0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Income/Expenses for Savings Rate -->
+    <div class="bg-white rounded-xl shadow p-5 mb-5">
+      <h2 class="text-sm font-semibold text-gray-600 mb-3">Monthly Cash Flow (for Savings Rate)</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="flex items-center gap-2">
+          <label for="monthlyIncome" class="text-xs text-gray-500 w-28 shrink-0">Monthly Income</label>
+          <input type="number" id="monthlyIncome" min="0" placeholder="5000" class="flex-1 border border-gray-200 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-emerald-300" aria-label="Monthly income" />
+        </div>
+        <div class="flex items-center gap-2">
+          <label for="monthlyExpenses" class="text-xs text-gray-500 w-28 shrink-0">Monthly Expenses</label>
+          <input type="number" id="monthlyExpenses" min="0" placeholder="3500" class="flex-1 border border-gray-200 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-emerald-300" aria-label="Monthly expenses" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Save Snapshot Button -->
+    <button id="saveSnapshot" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-2.5 rounded-xl mb-6 transition-colors" aria-label="Save snapshot">
+      Save Snapshot
+    </button>
+
+    <!-- Results -->
+    <div class="grid grid-cols-3 gap-4 mb-6">
+      <div class="bg-white rounded-xl shadow p-4 text-center">
+        <div class="text-xs text-gray-500 mb-1">Net Worth</div>
+        <div id="netWorthDisplay" class="text-2xl font-bold text-emerald-600">$0</div>
+      </div>
+      <div class="bg-white rounded-xl shadow p-4 text-center">
+        <div class="text-xs text-gray-500 mb-1">Savings Rate</div>
+        <div id="savingsRateDisplay" class="text-2xl font-bold text-blue-600">0%</div>
+      </div>
+      <div class="bg-white rounded-xl shadow p-4 text-center">
+        <div class="text-xs text-gray-500 mb-1">FIRE Number</div>
+        <div id="fireNumberDisplay" class="text-2xl font-bold text-orange-500">$0</div>
+        <div class="text-xs text-gray-400 mt-1">25× annual expenses</div>
+      </div>
+    </div>
+
+    <!-- Progress to FIRE -->
+    <div class="bg-white rounded-xl shadow p-5 mb-6">
+      <h2 class="text-sm font-semibold text-gray-600 mb-2">Progress to FIRE Number</h2>
+      <div class="flex items-center gap-3">
+        <div class="flex-1 bg-gray-100 rounded-full h-4">
+          <div id="fireProgress" class="bg-gradient-to-r from-emerald-400 to-emerald-600 h-4 rounded-full transition-all" style="width:0%"></div>
+        </div>
+        <div id="firePct" class="text-sm font-bold text-emerald-600 w-10">0%</div>
+      </div>
+    </div>
+
+    <!-- YoY Delta Tracker -->
+    <div class="bg-white rounded-xl shadow p-5">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-sm font-semibold text-gray-600">Snapshot History (Year-over-Year)</h2>
+      </div>
+      <div id="snapshotHistory" class="overflow-x-auto">
+        <p class="text-xs text-gray-300 text-center py-4">No snapshots saved yet</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'netWorthPlanner_v1';
+
+    function load() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch { return []; } }
+    function save(d) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); } catch {} }
+
+    function fmt(n) {
+      if (n < 0) return '-$' + Math.abs(Math.round(n)).toLocaleString();
+      return '$' + Math.round(n).toLocaleString();
+    }
+
+    function getValues() {
+      const v = id => parseFloat(document.getElementById(id).value) || 0;
+      const assets = v('assetBank') + v('assetInvest') + v('assetProperty') + v('assetRetire') + v('assetOther');
+      const liabs = v('liabMortgage') + v('liabLoans') + v('liabCredit') + v('liabOther');
+      const income = v('monthlyIncome');
+      const expenses = v('monthlyExpenses');
+      return { assets, liabs, income, expenses };
+    }
+
+    function updateLive() {
+      const { assets, liabs, income, expenses } = getValues();
+      document.getElementById('totalAssetsDisplay').textContent = fmt(assets);
+      document.getElementById('totalLiabDisplay').textContent = fmt(liabs);
+      const netWorth = assets - liabs;
+      document.getElementById('netWorthDisplay').textContent = fmt(netWorth);
+      const savings = income - expenses;
+      const rate = income > 0 ? Math.round((savings / income) * 100) : 0;
+      document.getElementById('savingsRateDisplay').textContent = rate + '%';
+      const annualExpenses = expenses * 12;
+      const fire = annualExpenses * 25;
+      document.getElementById('fireNumberDisplay').textContent = fmt(fire);
+      const pct = fire > 0 ? Math.min(Math.round((netWorth / fire) * 100), 100) : 0;
+      document.getElementById('fireProgress').style.width = Math.max(pct, 0) + '%';
+      document.getElementById('firePct').textContent = Math.max(pct, 0) + '%';
+    }
+
+    function renderHistory() {
+      const snaps = load();
+      const container = document.getElementById('snapshotHistory');
+      container.innerHTML = '';
+      if (!snaps.length) {
+        const p = document.createElement('p');
+        p.className = 'text-xs text-gray-300 text-center py-4';
+        p.textContent = 'No snapshots saved yet';
+        container.appendChild(p);
+        return;
+      }
+      const table = document.createElement('table');
+      table.className = 'w-full text-xs';
+      const thead = document.createElement('thead');
+      const htr = document.createElement('tr');
+      ['Date','Label','Assets','Liabilities','Net Worth','Savings Rate','FIRE Num','YoY Delta'].forEach(h => {
+        const th = document.createElement('th');
+        th.className = 'text-left text-gray-400 pb-2 pr-2';
+        th.textContent = h;
+        htr.appendChild(th);
+      });
+      thead.appendChild(htr);
+      table.appendChild(thead);
+      const tbody = document.createElement('tbody');
+      snaps.forEach((s, i) => {
+        const prev = snaps[i-1];
+        const delta = prev ? s.netWorth - prev.netWorth : null;
+        const tr = document.createElement('tr');
+        tr.className = 'border-b border-gray-50 hover:bg-emerald-50';
+        const cells = [
+          s.date, s.label||'', fmt(s.assets), fmt(s.liabs),
+          fmt(s.netWorth), s.savingsRate+'%', fmt(s.fire),
+          delta !== null ? (delta >= 0 ? '+' : '') + fmt(delta) : '—'
+        ];
+        cells.forEach((v, ci) => {
+          const td = document.createElement('td');
+          td.className = 'py-1.5 pr-2';
+          td.textContent = v;
+          if (ci === 7 && delta !== null) {
+            td.className += delta >= 0 ? ' text-emerald-600 font-semibold' : ' text-red-500 font-semibold';
+          }
+          tr.appendChild(td);
+        });
+        // delete button
+        const delTd = document.createElement('td');
+        const btn = document.createElement('button');
+        btn.textContent = '×'; btn.className = 'text-red-300 hover:text-red-500 font-bold';
+        btn.setAttribute('aria-label', 'Delete snapshot');
+        btn.addEventListener('click', () => { const d = load(); d.splice(i,1); save(d); renderHistory(); });
+        delTd.appendChild(btn); tr.appendChild(delTd);
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+      container.appendChild(table);
+    }
+
+    const allInputs = ['assetBank','assetInvest','assetProperty','assetRetire','assetOther',
+      'liabMortgage','liabLoans','liabCredit','liabOther','monthlyIncome','monthlyExpenses'];
+    allInputs.forEach(id => document.getElementById(id).addEventListener('input', updateLive));
+
+    document.getElementById('snapshotDate').value = new Date().toISOString().slice(0,10);
+
+    document.getElementById('saveSnapshot').addEventListener('click', () => {
+      const { assets, liabs, income, expenses } = getValues();
+      const netWorth = assets - liabs;
+      const savings = income - expenses;
+      const savingsRate = income > 0 ? Math.round((savings / income) * 100) : 0;
+      const fire = expenses * 12 * 25;
+      const snap = {
+        date: document.getElementById('snapshotDate').value || new Date().toISOString().slice(0,10),
+        label: document.getElementById('snapshotLabel').value.trim(),
+        assets, liabs, netWorth, savingsRate, fire
+      };
+      const snaps = load();
+      snaps.push(snap);
+      save(snaps);
+      renderHistory();
+    });
+
+    updateLive();
+    renderHistory();
+  </script>
+</body>
+</html>
